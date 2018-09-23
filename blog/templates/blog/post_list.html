@@ -37,10 +37,13 @@
   <div class="container">
       <div class="row">
         <div class="one-half column" style="margin-top: 10%%">
-          <h2>The Title of This Post is:Undetermined</h2>
-          <p>published: date, time</p>
-          <p>This is where the words go.</p>
-          <p></p>
+          {% for post in posts%}
+            <div>
+              <p>published: {{ post.published_date }}</p>
+              <h1><a href="">{{ post.title }}</a><h1>
+                <p>{{ post.text|linebreaksbr }}</p>
+            </div>
+          {% endfor %}
         </div>
       </div>
     </div>
