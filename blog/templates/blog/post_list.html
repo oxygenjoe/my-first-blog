@@ -1,23 +1,27 @@
-<!DOCTYPE html>
+{% extends 'blog/base.html' %}
 {% load static %}
 <html>
   <head>
-    <title>Django Blog</title>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="{% static './css/blog.css' }">
+        <title>TINY IS SO SMALL</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+  </head>
   <body>
-    <div>
-      <h1><a href="/">Djangoblogo</a></h1>
+    <div class="page-header">
+      <h1><a href="/">Django blog</a></h1>
     </div>
-    <div>
+
+    {% block content %}
       {% for post in posts %}
-        <div>
-          <p>published: {{ post.published_date }}</p>
-          <h1><a href="">{{ post.title }}</a></h1>
+        <div class="post">
+          <div class="date">
+            <p>published: {{ post.published_date }}</p>
+          </div>
+          <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
           <p>{{ post.text|linebreaksbr }}</p>
         </div>
       {% endfor %}
-    </div>
+    {% endblock %}
   </body>
 </html>
